@@ -1,43 +1,162 @@
-<!doctype html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!doctype html lang="en"> <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title></title>
-  <meta name="description" content="">
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+	<!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>GHE: A multiplatform text-based hex editor.</title>
+		<meta name="description" content="">
 
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/style.css">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
 
-  <script src="js/libs/modernizr-2.5.3.min.js"></script>
-</head>
-<body>
-  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-  <header>
+		<script src="js/libs/modernizr-2.5.3.min.js"></script>
+	</head>
+	<body>
+		<div id="wrap">
+			<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+			<header>
 
-  </header>
-  <div role="main">
+			</header>
+			<div role="main">
+				<ul class="nav nav-pills">
+					<li style="margin-right:20px;">
+						<a id="logo" href="/"><img src="img/logo.png"></a>
+					</li>
+					<li class="active">
+						<a href="/" class="navlink">Home</a>
+					</li>
+					<li>
+						<a href="about.html" class="navlink">About GHE</a>
+					</li>
+					<li>
+						<a href="https://github.com/goldblattster/goddamn-hex-editor/wiki" class="navlink">Documentation</a>
+					</li>
 
-  </div>
-  <footer>
+					<li>
+						<a href="#" class="navlink">Changelog</a>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle navlink"
+						data-toggle="dropdown"
+						href="#"> Download <b class="caret"></b> </a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="https://github.com/goldblattster/goddamn-hex-editor/zipball/master">Source Code (.zip)</a>
+							</li>
+							<li>
+								<a href="https://github.com/goldblattster/goddamn-hex-editor/tarball/master">Source Code (.tar.gz)</a>
+							</li>
+							<li>
+								<a href="#">Windows Binary (Coming Soon)</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
 
-  </footer>
+				<div class="container">
+					<div class="row">
+						<div class="span8 maincolumn">
+							<div class="page-header">
+								<h1>Home <small>Information and quick start</small></h1>
+							</div>
+							<div id="hero">
+								<p>
+									GDE is a free & open source tiny command-line cross-platform hex editor with some cool features.
+								</p>
+								<p>
+									Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+								</p>
 
+								<div id="examples">
+									<h3>
+										Hex editing in 1-2-3
+									</h3>
+									
+									<p><ol>
+										<li>Open a file <code>gde myfile.exe</code></li>
+										<li>Turn on real-time editing <code>F2</code></li>
+										<li>Make some changes and <code>Esc</code></li>
+									</ol>
+								</div>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+								<br>
+								Screenshots
+								<ul class="thumbnails">
+									<li class="span3">
+										<a href="#" class="thumbnail"> <img src="http://placehold.it/260x180" alt=""> </a>
+									</li>
+									<li class="span3">
+										<a href="#" class="thumbnail"> <img src="http://placehold.it/260x180" alt=""> </a>
+									</li>
+									<li class="span3">
+										<a href="#" class="thumbnail"> <img src="http://placehold.it/260x180" alt=""> </a>
+									</li>
+									<li class="span3">
+										<a href="#" class="thumbnail"> <img src="http://placehold.it/260x180" alt=""> </a>
+									</li>
 
-  <script src="js/plugins.js"></script>
-  <script src="js/script.js"></script>
+								</ul>
 
-  <script>
-    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-    s.parentNode.insertBefore(g,s)}(document,'script'));
-  </script>
-</body>
+							</div>
+						</div>
+						<div class="span4">
+							<div id="download">
+								<h2>Download</h2>
+								<p>
+									GDE is multiplatform. You can get the source code or Windows binaries.
+								</p>
+								<div class="btn-group">
+									<a class="btn" href="https://github.com/goldblattster/goddamn-hex-editor/zipball/master"> Source (zip) </a>
+									<a class="btn" href="https://github.com/goldblattster/goddamn-hex-editor/tarball/master"> Source (tar) </a>
+									<a class="btn" href="#"> Windows </a>
+								</div>
+							</div>
+							<div id="changelog">
+								<h2>Changelog</h2>
+								<p>
+									<h4>v0.02dev (last release)</h4>
+									<ul>
+										<li>Fixed double-printing bug</li>
+										<li>removed writing to files</li>
+										<li>removed real-time editing (coming back later)</li>
+										<li>implemented better file manipulation/loading</li>
+										<li>finished scroll / cursor movement</li>
+									</ul>
+									<a></a>
+								</p>
+								
+							</div>
+						</div>
+					</div>
+					<footer>
+					<img src="img/logo_big.png" alt="logo" id="footerlogo">
+					<p>GHE is written by Danny Pana and Ariel Goldblatt. It's licensed under BSD, but the website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>. Go nuts.</p>
+				</footer>
+				</div>
+
+				
+
+			</div>
+		</div>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script>
+			window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')
+		</script>
+		<script src="js/plugins.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/script.js"></script>
+
+		<script>
+			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; ( function(d, t) {
+					var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+					g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+					s.parentNode.insertBefore(g, s)
+				}(document, 'script'));
+		</script>
+	</body>
 </html>
