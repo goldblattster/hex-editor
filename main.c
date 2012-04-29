@@ -49,7 +49,7 @@ void parse_file(char* file_name)
     clear();
     dump_hex(hex_buff, row, 24, 1);
     at_cursor = mvinch(y_cursor, x_cursor);
-    mvprintw(0, 0, "Goddamn Hex Tool 0.2 Write Enable:%i\n", write_mode);
+    mvprintw(0, 0, "Goddamn Hex Editor 0.2 Write Enable:%i\n", write_mode);
     move(y_cursor, x_cursor);
     c = getch();
     switch(c) //Scroll up / down
@@ -175,7 +175,5 @@ void write_hex(char* buff, unsigned int row, char y, char x, char byte) //Commen
   byte = (hex_buff[0] << 4) | hex_buff[1];
   z = ((row + y) * 16) + len + loc;
   buff[z] = byte;
-  //fseek(f_ptr, ((row + y) * 16) + (len + loc), SEEK_SET);
-  //fputc(byte, f_ptr);
   */
 }
