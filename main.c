@@ -113,14 +113,13 @@ void dump_hex(char* buff,unsigned int row, unsigned int line_dump, int y)
 {
   char hex_buff[17];
   char c;
-  int i;
   int x;
   unsigned int z;
   unsigned int s_z;
   
-  for(i = y; i < line_dump; i++)
+  for(; y < line_dump; y++)
   {
-    z = (row + i) * 16;
+    z = (row + y) * 16;
     s_z = z;
     for(x = 0; x < 16; x++)
     {
@@ -131,37 +130,40 @@ void dump_hex(char* buff,unsigned int row, unsigned int line_dump, int y)
 	hex_buff[x] = '.';
     }
     hex_buff[16] = '\0';
-    mvprintw(i, 0, "%X: ", (row + i) * 16);
-    move(i, 11);
+    mvprintw(y, 0, "%X: ", (row + y) * 16);
+    move(y, 11);
     for(x = 0; x < 16; x++)
     {
-      if(hex_buff[x] == EOF)
+      switch(buff[s_z + x])
       {
-	hex_buff[x + 1] = '\0';
-	mvprintw(i, 60, "%s\n", hex_buff);
-	return;
-      }
-      if(buff[s_z + x] < 0x20)
-      {
-	c = buff[s_z + x];
-	if(c == 0)
-	{
+	case EOF: //End of file reached
+	  hex_buff[x + 1] = '\0';
+	  mvprintw(y, 60, "%s\n", hex_buff);
+	  return;
+	case 0:  //0x0 will only print one character
 	  printw("00 ");
-	  addch(' ');
-	  continue;
-	}
-	if(c < 0x10);
-	  printw("0");
-	printw("%X ", c);
-	continue;
+	  break;
+	default: //Everything else
+	  if(buff[s_z + x] < 0x10)
+	  {
+	    addch('0');
+	  }
+	  if(buff[s_z + x] < 0x20)
+	  {
+	    printw("%X ", buff[s_z + x]);
+	    continue;
+	  }
+	  printw("%X ", hex_buff[x]);
+	  break;
       }
-      printw("%X ", hex_buff[x]);
     }
     printw(" %s\n", hex_buff);
+    refresh();
   }
-  refresh();
 }
 
 void write_hex(char* buff, unsigned int row, char y, char x, char byte) //Commented out due to being unstable
 {
+  return;
 }
+
