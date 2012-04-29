@@ -8,7 +8,10 @@ int main(int argc, char* argv[])
   keypad(stdscr, TRUE);
   clear();
   refresh();
-  parse_file(argv[1]);
+  if(argv[1] != NULL)
+  {
+    parse_file(argv[1]);
+  }
   echo();
   endwin();
   return 0;
@@ -139,41 +142,4 @@ void dump_hex(char* buff,unsigned int row, unsigned int line_dump, int y)
 
 void write_hex(char* buff, unsigned int row, char y, char x, char byte) //Commented out due to being unstable
 {
-  /*
-  char hex_buff[2];
-  char c;
-  int i;
-  unsigned int z;
-  int loc;
-  int len;
-  do
-  {
-    c = mvinch(y, x);
-    x++;
-    if(c != ' ')
-      len++;
-  }while(len != (x - 11));
-    if(mvinch(y, x+1) == ' ')
-    {
-     hex_buff[1] = byte;
-     hex_buff[0] = mvinch(y, x-1);
-     loc = -1;
-    }
-    else
-    {
-     hex_buff[0] = byte;
-     hex_buff[1] = mvinch(y, x+1);
-     loc = 0;
-    }
-  for(i = 0; i < 2; i++)
-  {
-    if(hex_buff[i] >= 48 && hex_buff[i] <= 57)
-      hex_buff[i] = hex_buff[i] - 48;
-    else
-      hex_buff[i] = hex_buff[i] - 97;
-  }
-  byte = (hex_buff[0] << 4) | hex_buff[1];
-  z = ((row + y) * 16) + len + loc;
-  buff[z] = byte;
-  */
 }
