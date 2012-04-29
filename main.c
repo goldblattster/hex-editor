@@ -44,7 +44,7 @@ void parse_file(char* file_name)
   }
   fseek(f_ptr, 0, SEEK_END);
   sz = ftell(f_ptr);
-  rewind(f_ptr);
+  fseek(f_ptr, 0, SEEK_SET);
   hex_buff = (char*) malloc(sz * sizeof(char));
   do
   {
@@ -56,9 +56,9 @@ void parse_file(char* file_name)
   for(;;)
   {
     clear();
-    dump_hex(hex_buff, row, 24, 1);
+    dump_hex(hex_buff, row, 24, 0);
     at_cursor = mvinch(y_cursor, x_cursor);
-    mvprintw(0, 0, "Goddamn Hex Editor 0.2 Write Enable:%i\n", write_mode);
+    //mvprintw(0, 0, "Goddamn Hex Editor 0.2 Write Enable:%i\n", write_mode);
     move(y_cursor, x_cursor);
     c = getch();
     switch(c) //Scroll up / down
@@ -75,7 +75,7 @@ void parse_file(char* file_name)
 	free(hex_buff);
 	return;
       case KEY_UP:
-	if(y_cursor != 1)
+	if(y_cursor != 0)
 	  y_cursor--;
 	break;
       case KEY_DOWN:
@@ -112,14 +112,16 @@ void parse_file(char* file_name)
 void dump_hex(char* buff,unsigned int row, unsigned int line_dump, int y)
 {
   char hex_buff[17];
+  char c;
   int i;
   int x;
-  int z;
-  int eof_check = 0;
+  unsigned int z;
+  unsigned int s_z;
   
   for(i = y; i < line_dump; i++)
   {
     z = (row + i) * 16;
+    s_z = z;
     for(x = 0; x < 16; x++)
     {
       hex_buff[x] = buff[z++];
@@ -138,6 +140,20 @@ void dump_hex(char* buff,unsigned int row, unsigned int line_dump, int y)
 	hex_buff[x + 1] = '\0';
 	mvprintw(i, 60, "%s\n", hex_buff);
 	return;
+      }
+      if(buff[s_z + x] < 0x20)
+      {
+	c = buff[s_z + x];
+	if(c == 0)
+	{
+	  printw("00 ");
+	  addch(' ');
+	  continue;
+	}
+	if(c < 0x10);
+	  printw("0");
+	printw("%X ", c);
+	continue;
       }
       printw("%X ", hex_buff[x]);
     }
