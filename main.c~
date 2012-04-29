@@ -20,7 +20,7 @@ void parse_file(char* file_name)
   int c;
   unsigned int i;
   int x;
-  unsigned int row;
+  unsigned int row = 0;
   char x_cursor;
   char y_cursor;
   char hex_buff[17];
@@ -34,30 +34,7 @@ void parse_file(char* file_name)
   {
     clear();
     mvprintw(0, 0, "Goddamn Hex Tool 0.1 Developed by Danny Panasyuk and Ariel Goldblatt.\n");
-    for(i = 1; i < 24; i++)
-    {
-      fseek(f_ptr, (row + i) * 16, SEEK_SET);
-      for(x = 0; x < 16; x++) //Loads a buffer from the file
-      {
-	hex_buff[x] = fgetc(f_ptr);
-	if(hex_buff[x] == EOF)
-	{
-	  hex_buff[x] = ' ';
-	}
-	if(hex_buff[x] < 32)
-	{
-	  hex_buff[x] = '.';
-	}
-      }
-      hex_buff[16] = '\0'; //Buffer is also a string to make things easier
-      mvprintw(i, 0, "%X: ", (short)(row + i) * 16);
-      for(x = 0; x < 8; x++)
-      {
-	printw("%X%X ", hex_buff[x], hex_buff[x + 1]); //Print hex to the screen
-      }
-      printw("%s\n", hex_buff); //Print ASCII to screen
-    }
-    refresh();
+    dump_hex(f_ptr, row, 24, 1); 
     c = getch();
     switch(c) //Scroll up / down
     {
@@ -74,3 +51,37 @@ void parse_file(char* file_name)
     }
   }
 }
+
+void dump_hex(FILE* f_ptr,unsigned int row, unsigned int line_dump, int y)
+{
+  char hex_buff[17];
+  int i;
+  int x;
+  if(f_ptr == NULL)
+  {
+    printw("\n The file you were trying to open cannot be opened.");
+    return;
+  }
+  for(i = y; i < line_dump; i++)
+  {
+    fseek(f_ptr, (row + i) * 16, SEEK_SET);
+    for(x = 0; x < 16; x++)
+    {
+      hex_buff[x] = fgetc(f_ptr);
+      if(hex_buff[x] == EOF)
+	hex_buff[x] = ' ';
+      if(hex_buff[x] < 32)
+	hex_buff[x] = '.';
+    }
+    hex_buff[16] = '\0';
+    mvprintw(i, 0, "%X: ", (row + i) * 16);
+    move(i, 11);
+    for(x = 0; x < 8; x++)
+    {
+      printw("%X%X ", hex_buff[x], hex_buff[x + 1]);
+    }
+    printw("%s\n", hex_buff);
+  }
+  refresh();
+}
+
