@@ -124,38 +124,22 @@ void dump_hex(char* buff,unsigned int row, unsigned int line_dump, int y)
     for(x = 0; x < 16; x++)
     {
       hex_buff[x] = buff[z++];
-      if(hex_buff[x] == EOF)
-	continue;
       if(hex_buff[x] < 32)
 	hex_buff[x] = '.';
     }
     hex_buff[16] = '\0';
-    mvprintw(y, 0, "%X: ", (row + y) * 16);
+    mvprintw(y, 0, "%08X: ", (row + y) * 16);
     move(y, 11);
     for(x = 0; x < 16; x++)
     {
-      switch(buff[s_z + x])
-      {
-	case EOF: //End of file reached
+	if(buff[s_z + x] == EOF)
+	{
 	  hex_buff[x + 1] = '\0';
-	  mvprintw(y, 60, "%s\n", hex_buff);
+	  mvprintw(y, 60, " %s\n", hex_buff);
 	  return;
-	case 0:  //0x0 will only print one character
-	  printw("00 ");
-	  break;
-	default: //Everything else
-	  if(buff[s_z + x] < 0x10)
-	  {
-	    addch('0');
-	  }
-	  if(buff[s_z + x] < 0x20)
-	  {
-	    printw("%X ", buff[s_z + x]);
-	    continue;
-	  }
-	  printw("%X ", hex_buff[x]);
-	  break;
-      }
+	}
+	else
+	   printw("%02X ", buff[s_z + x] & 0xFF);
     }
     printw(" %s\n", hex_buff);
     refresh();
