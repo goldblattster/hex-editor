@@ -21,8 +21,8 @@ void parse_file(char* file_name)
   unsigned int i;
   int x;
   unsigned int row = 0;
-  char x_cursor = 0;
-  char y_cursor = 0;
+  char x_cursor = 11;
+  char y_cursor = 1;
   char at_cursor;
   char hex_buff[17];
   f_ptr = fopen(file_name, "r+");
@@ -34,8 +34,9 @@ void parse_file(char* file_name)
   for(;;)
   {
     clear();
-    mvprintw(0, 0, "Goddamn Hex Tool 0.1 Developed by Danny Panasyuk and Ariel Goldblatt.\n");
+    mvprintw(0, 0, "Goddamn Hex Tool 0.1 %i %i\n", y_cursor, x_cursor);
     dump_hex(f_ptr, row, 24, 1); 
+    move(y_cursor, x_cursor);
     c = getch();
     switch(c) //Scroll up / down
     {
@@ -51,19 +52,19 @@ void parse_file(char* file_name)
 	fclose(f_ptr);
 	return;
       case KEY_UP:
-	if(y_cursor != 0)
+	if(y_cursor != 1)
 	  y_cursor--;
 	break;
       case KEY_DOWN:
-	if(y_cursor != 24) 
+	if(y_cursor != 23) 
 	  y_cursor++;
 	break;
       case KEY_LEFT:
-	if(x_cursor != 0)
+	if(x_cursor != 11)
 	  x_cursor--;
 	break;
       case KEY_RIGHT:
-	if(x_cursor != 79)
+	if(x_cursor != 49)
 	  x_cursor++;
 	break;
     }
