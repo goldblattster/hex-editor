@@ -21,8 +21,9 @@ void parse_file(char* file_name)
   unsigned int i;
   int x;
   unsigned int row = 0;
-  char x_cursor;
-  char y_cursor;
+  char x_cursor = 0;
+  char y_cursor = 0;
+  char at_cursor;
   char hex_buff[17];
   f_ptr = fopen(file_name, "r+");
   if(f_ptr == NULL)
@@ -38,16 +39,33 @@ void parse_file(char* file_name)
     c = getch();
     switch(c) //Scroll up / down
     {
-      case KEY_UP:
-	if(row != 0);
+      case KEY_PPAGE:
+	if(row != 0)
 	  row--;
 	break;
-      case KEY_DOWN:
+      case KEY_NPAGE:
+	if(row != 0xFFFFFFFF)
 	  row++;
 	break;
       case 27: //27 == ESCAPE key
 	fclose(f_ptr);
 	return;
+      case KEY_UP:
+	if(y_cursor != 0)
+	  y_cursor--;
+	break;
+      case KEY_DOWN:
+	if(y_cursor != 24) 
+	  y_cursor++;
+	break;
+      case KEY_LEFT:
+	if(x_cursor != 0)
+	  x_cursor--;
+	break;
+      case KEY_RIGHT:
+	if(x_cursor != 79)
+	  x_cursor++;
+	break;
     }
   }
 }
@@ -80,7 +98,7 @@ void dump_hex(FILE* f_ptr,unsigned int row, unsigned int line_dump, int y)
     {
       printw("%X%X ", hex_buff[x], hex_buff[x + 1]);
     }
-    printw("%s\n", hex_buff);
+    printw(" %s\n", hex_buff);
   }
   refresh();
 }
