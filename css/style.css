@@ -128,3 +128,5 @@ a:active {position: relative;top: 1px;}
 
 footer {height:60px;background:#fff;border: 5px solid lightgray;margin-top:25px;padding:15px;-webkit-border-radius: 7px;border-radius: 7px;}
 footer #footerlogo {margin-bottom:5px;}
+
+.emailhide {display:none;}
