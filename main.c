@@ -51,6 +51,7 @@ void parse_file(char* file_name)
       }
       hex_buff[16] = '\0'; //Buffer is also a string to make things easier
       mvprintw(i, 0, "%X: ", (short)(row + i) * 16);
+      move(i,11);	
       for(x = 0; x < 8; x++)
       {
 	printw("%X%X ", hex_buff[x], hex_buff[x + 1]); //Print hex to the screen
