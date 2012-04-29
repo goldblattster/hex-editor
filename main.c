@@ -8,12 +8,18 @@ int main(int argc, char* argv[])
   keypad(stdscr, TRUE);
   clear();
   refresh();
-  if(argv[1] != NULL)
+  if(argv[1] == NULL)
   {
+    mvprintw(0,0, "No argument found. Press a key to continue.");
+    getch();
+  }
+  else {
     parse_file(argv[1]);
   }
   echo();
+  clear();
   endwin();
+  
   return 0;
 }
 
