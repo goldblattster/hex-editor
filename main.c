@@ -56,7 +56,7 @@ void parse_file(char* file_name)
   for(;;)
   {
     clear();
-    dump_hex(hex_buff, row, 24, 0);
+    dump_hex(hex_buff, row, 24, 0, sz);
     at_cursor = mvinch(y_cursor, x_cursor);
     //mvprintw(0, 0, "Goddamn Hex Editor 0.2 Write Enable:%i\n", write_mode);
     move(y_cursor, x_cursor);
@@ -109,7 +109,7 @@ void parse_file(char* file_name)
   }
 }
 
-void dump_hex(char* buff,unsigned int row, unsigned int line_dump, int y)
+void dump_hex(char* buff,unsigned int row, unsigned int line_dump, int y, unsigned int size)
 {
   char hex_buff[17];
   char c;
@@ -132,7 +132,7 @@ void dump_hex(char* buff,unsigned int row, unsigned int line_dump, int y)
     move(y, 11);
     for(x = 0; x < 16; x++)
     {
-	if(buff[s_z + x] == EOF)
+	if(buff[s_z + x] == EOF && s_z + x >= size)
 	{
 	  hex_buff[x + 1] = '\0';
 	  mvprintw(y, 60, " %s\n", hex_buff);
